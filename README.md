@@ -1,59 +1,110 @@
-# ConsumirDeezerUI
+### 🚀 Tecnologias Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+[![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![RxJS](https://img.shields.io/badge/RxJS-B7178C?style=for-the-badge&logo=reactivex&logoColor=white)](https://rxjs.dev/)
+[![Angular CLI](https://img.shields.io/badge/Angular_CLI-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/tools/cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Development server
+# ConsumirDeezer.UI (Angular)
 
-To start a local development server, run:
+Aplicação Single Page Application (SPA) desenvolvida em **Angular (^19.2.0)** e **TypeScript** para interagir com a `ConsumirDeezer.API` (Backend) e exibir resultados de busca de artistas e suas músicas mais populares do Deezer.
 
-```bash
-ng serve
-```
+## 🔗 Projeto Completo
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Este é o módulo Frontend do projeto. O código completo do Backend (.NET Core) está disponível aqui:
+[ConsumirDeezer.API (Backend)](https://github.com/marcelogmoura/ConsumirDeezer.API)
 
-## Code scaffolding
+## 🚀 Tecnologias Utilizadas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Categoria | Tecnologia | Versão |
+| :--- | :--- | :--- |
+| Framework | Angular | ^19.2.0 |
+| Linguagem | TypeScript | ~5.7.2 |
+| HTTP/Assincronia | RxJS e HttpClient | Utiliza `debounceTime` e `switchMap` para busca otimizada |
+| Estrutura | Standalone Components | Arquitetura moderna e modular |
+| Roteamento | Angular Router | Mapeamento das rotas `/` (Busca) e `/artist/:id` (Detalhes) |
 
-```bash
-ng generate component component-name
-```
+## 📁 Estrutura do Projeto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+O projeto segue a estrutura de Standalone Components, organizada por features:
 
-```bash
-ng generate --help
-```
+* **`src/app/pages/search`:** Componente principal para busca de artistas.
+* **`src/app/pages/artist-detail`:** Componente para exibir o Top Tracks de um artista.
+* **`src/app/services/api.service.ts`:** Camada centralizada de comunicação com a `ConsumirDeezer.API` (Backend).
+* **`src/app/types/deezer.types.ts`:** Definição das interfaces (DTOs) que espelham a estrutura de dados da API.
 
-## Building
+## ⚙️ Configuração e Execução
 
-To build the project run:
+### Pré-requisitos
 
-```bash
-ng build
-```
+* Node.js (versão compatível com Angular 19)
+* Angular CLI (`npm install -g @angular/cli`)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**⚠️ Atenção:** Este frontend faz requisições para `http://localhost:5215/api`. O projeto **Backend** (`ConsumirDeezer.API`) deve estar rodando para a aplicação funcionar.
 
-## Running unit tests
+### Passos
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/marcelogmoura/ConsumirDeezer.UI]
+    cd ConsumirDeezer.UI
+    ```
+
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+3.  **Execute o servidor de desenvolvimento:**
+    A aplicação será servida na porta padrão `4200`.
+    ```bash
+    ng serve
+    ```
+
+4.  **Acesse a aplicação:**
+    Abra seu navegador em `http://localhost:4200/`.
+
+## 📈 Funcionalidades Principais
+
+* **Busca Otimizada (RxJS):** Utiliza `FormControl` em conjunto com `debounceTime(400ms)` e `distinctUntilChanged` para evitar requisições desnecessárias, melhorando a performance.
+* **Player de Áudio:** O componente de detalhes exibe um player nativo (`<audio>`) utilizando o link de `preview` de 30 segundos fornecido pela API.
+* **Tratamento de Falhas:** Implementação de lógica para exibir mensagens de "nenhum resultado" apenas após a tentativa de busca e para substituir imagens ausentes por *placeholders*.
+
+## 🧪 Testes Unitários
+
+Para executar os testes unitários (usando Karma):
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## 🖼️ Demonstração (Interface)
 
-For end-to-end (e2e) testing, run:
+Abaixo estão algumas capturas de tela da aplicação em funcionamento, demonstrando o fluxo de busca e visualização dos detalhes:
 
-```bash
-ng e2e
-```
+### 1. Tela de Busca Otimizada
+Interface inicial com a barra de busca e a instrução clara para o usuário.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+![Tela de Busca de Artista (Estado Inicial)](https://i.postimg.cc/Dw3SVsdx/Screenshot-22.jpg)
 
-## Additional Resources
+### 2. Resultados da Busca
+Exibição dos resultados (Cards de Artista) em tempo real, após a digitação do termo de busca.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Resultados da Busca de Artistas](https://i.postimg.cc/3wSpHNww/Screenshot-23.jpg)
+
+### 3. Detalhes e Top Tracks
+Página de detalhes do artista, exibindo o Top Tracks, a prévia em áudio e a duração formatada.
+
+![Tela de Detalhes do Artista e Top Tracks](https://i.postimg.cc/0NB6B4t9/Screenshot-24.jpg)
+
+
+---
+
+## 🧑‍💻 Autor
+
+| Autor | GitHub | LinkedIn | Email |
+| :---: | :---: | :---: | :---: |
+| **Marcelo Moura** | [![GitHub Badge](https://img.shields.io/badge/-GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/marcelogmoura) | [![LinkedIn Badge](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/marcelogmoura) | `mgmoura@gmail.com` |
+
+---
