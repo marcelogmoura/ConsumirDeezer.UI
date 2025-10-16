@@ -1,0 +1,27 @@
+<div class="detail-container">
+  <a [routerLink]="['/']" class="back-button">&larr; Voltar para a busca</a>
+
+  <h1>Top Músicas</h1>
+
+  <ng-container *ngIf="tracks$ | async as tracks">
+    <div *ngIf="tracks.length > 0; else noTracks" class="track-list">
+      <div *ngFor="let track of tracks" class="track-card">
+        <img [src]="track.album.cover_medium" [alt]="'Capa do álbum ' + track.album.title">
+        <div class="track-info">
+          <h3>{{ track.title }}</h3>
+          <p>Álbum: {{ track.album.title }}</p>
+          <p>Duração: {{ track.duration | number }} segundos</p>
+        </div>
+        <div class="track-preview">
+          <audio controls [src]="track.preview"></audio>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noTracks>
+      <div class="empty-state">
+        <p>Nenhuma música encontrada para este artista.</p>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>
