@@ -10,7 +10,10 @@ import { Track } from '../../types/deezer.types';
 @Component({
   selector: 'app-artist-detail',
   standalone: true,  
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule, 
+    RouterLink
+  ],
   templateUrl: './artist-detail.component.html',
   styleUrls: ['./artist-detail.component.scss']
 })
@@ -21,9 +24,7 @@ export class ArtistDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private apiService: ApiService
-  ) {}
-
-  
+  ) {}  
 
   public ngOnInit(): void {    
     this.tracks$ = this.route.paramMap.pipe(      

@@ -1,7 +1,11 @@
 <div class="search-container">
     <h1>Busque seu Artista Favorito</h1>
 
-    <input type="text" placeholder="Digite o nome do artista (ex: KISS)" [formControl]="searchControl"
+    <div>
+        <p> Após a busca, clique no artista desejado para ver as Top5 mais ouvidas e uma prévia das faixas. </p>
+    </div>
+
+    <input type="text" placeholder="Digite o nome do artista (ex: Kiss, Iron Maiden, Black Sabbath...)" [formControl]="searchControl"
         class="search-input">
 
     <ng-container *ngIf="artists$ | async as artists">
@@ -11,21 +15,31 @@
             <div *ngFor="let artist of artists" class="artist-card" (click)="selectArtist(artist.id)" tabindex="0"
                 role="button">
                 <img [src]="artist.picture_medium" [alt]="'Foto de ' + artist.name" (error)="handleImageError($event)">
-                ```
+            
 
                 <div class="artist-info">
                     <h2>{{ artist.name }}</h2>
                     <p *ngIf="artist.nb_fan > 0">{{ artist.nb_fan | number }} fãs</p>
-                    <p>ID: {{ artist.id }}</p>
+                    <p>id: {{ artist.id }}</p>
                 </div>
             </div>
         </div>
-
+        
         <ng-template #noResults>
             <div class="empty-state">
-                <p>Nenhum artista encontrado. Tente um termo diferente.</p>
+                <p></p>
             </div>
         </ng-template>
 
     </ng-container>
+
+    <div class="repository-links">
+        <p>
+            Projeto Completo (Código Fonte): 
+            <a href="https://github.com/marcelogmoura/consumirdeezer.api" target="_blank">Backend (.NET Core)</a> 
+            | 
+            <a href="https://github.com/marcelogmoura/consumirdeezer.ui" target="_blank">Frontend (Angular)</a>
+        </p>
+        <p class="copyright">Desenvolvido em Angular e ASP.NET Core.</p>
+    </div>
 </div>

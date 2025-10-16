@@ -1,7 +1,7 @@
 <div class="detail-container">
   <a [routerLink]="['/']" class="back-button">&larr; Voltar para a busca</a>
 
-  <h1>Top Músicas</h1>
+  <h1>Top 5 Músicas</h1>
 
   <ng-container *ngIf="tracks$ | async as tracks">
     <div *ngIf="tracks.length > 0; else noTracks" class="track-list">
@@ -10,7 +10,7 @@
         <div class="track-info">
           <h3>{{ track.title }}</h3>
           <p>Álbum: {{ track.album.title }}</p>
-          <p>Duração: {{ track.duration | number }} segundos</p>
+          <p>Duração: {{ track.duration | number }} segundos</p>          
         </div>
         <div class="track-preview">
           <audio controls [src]="track.preview"></audio>

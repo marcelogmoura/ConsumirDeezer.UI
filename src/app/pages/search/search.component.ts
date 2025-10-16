@@ -21,7 +21,6 @@ import { Artist } from '../../types/deezer.types';
 export class SearchComponent implements OnInit {
  
   public searchControl = new FormControl('', { nonNullable: true });
-
  
   public artists$: Observable<Artist[]> = of([]);
   
@@ -54,10 +53,11 @@ export class SearchComponent implements OnInit {
       })
     );
   }
-
-  /**   .
+ 
+  /**  
    * @param id  
    */
+  
   public selectArtist(id: number): void {
     if (!id) return; 
     this.router.navigate(['/artist', id]);
